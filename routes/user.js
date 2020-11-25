@@ -17,7 +17,15 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const input = req.body;
+    //const input = req.body;
+    const input = {
+      idtk: "vtt1",
+      matkhau: "vtt1",
+      email: "vtt1@gmail.com",
+      sdt: "0123456789",
+      trangthai: false,
+      idlu: 1,
+    };
     await userService.createUsers(input);
 
     response.success(res);
