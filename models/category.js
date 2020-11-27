@@ -1,11 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
   const category = sequelize.define("category", {
-    iddm: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      autoIncrement: true,
       primaryKey: true,
     },
-    tendm: {
+    name: {
       type: DataTypes.TEXT,
       allowNull: false,
     },

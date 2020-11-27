@@ -1,9 +1,7 @@
 const models = require("../models/index");
 
-const getUsers = async (input) => {
-  const users = await models.user.findAll();
-  //console.log(users);
-  return { users };
+const getAllUsers = async () => {
+  return await models.user.findAll();
 };
 
 const createUsers = async (input) => {
@@ -11,6 +9,6 @@ const createUsers = async (input) => {
 };
 
 module.exports = {
-  getUsers,
+  getAllUsers,
   createUsers,
 };

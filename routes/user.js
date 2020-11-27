@@ -6,9 +6,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const input = req.body;
-    const output = await userService.getUsers(input);
-
+    const output = await userService.getAllUsers();
     response.success(res, output);
   } catch (e) {
     response.fail(res, e);
@@ -17,17 +15,8 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    //const input = req.body;
-    const input = {
-      idtk: "vtt1",
-      matkhau: "vtt1",
-      email: "vtt1@gmail.com",
-      sdt: "0123456789",
-      trangthai: false,
-      idlu: 1,
-    };
+    const input = req.body;
     await userService.createUsers(input);
-
     response.success(res);
   } catch (e) {
     response.fail(res, e);

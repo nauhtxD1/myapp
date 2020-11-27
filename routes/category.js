@@ -6,10 +6,18 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const input = req.body;
-    const output = categoryService.getCategories(input);
-
+    const output = await categoryService.getAllCategories();
     response.success(res, output);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
+router.post("/", async (req, res) => {
+  try {
+    const input = req.body;
+    await categoryService.createCategory(input);
+    response.success(res);
   } catch (e) {
     response.fail(res, e);
   }

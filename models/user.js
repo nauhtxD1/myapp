@@ -1,11 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
   const user = sequelize.define("user", {
-    idtk: {
+    id: {
       type: DataTypes.TEXT,
       allowNull: false,
       primaryKey: true,
     },
-    matkhau: {
+    password: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
@@ -13,16 +13,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: true,
     },
-    sdt: {
+    phone: {
       type: DataTypes.TEXT,
       allowNull: true,
     },
-    trangthai: {
+    status: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
     },
-    idlu: {
+    userCategoryId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },

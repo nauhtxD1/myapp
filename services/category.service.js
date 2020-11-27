@@ -1,9 +1,14 @@
 const models = require("../models/index");
 
-const getCategories = async (input) => {
+const getAllCategories = async () => {
   return await models.category.findAll();
 };
 
+const createCategory = async (input) => {
+  await models.category.create({ ...input });
+};
+
 module.exports = {
-  getCategories,
+  getAllCategories,
+  createCategory,
 };
