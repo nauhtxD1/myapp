@@ -1,9 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
   const user = sequelize.define("user", {
     id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    username: {
       type: DataTypes.TEXT,
       allowNull: false,
-      primaryKey: true,
+      unique: true,
     },
     password: {
       type: DataTypes.TEXT,
@@ -22,10 +27,16 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: false,
     },
-    userCategoryId: {
+    userTypeId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
   });
+  user.associate = (models) => {
+    user.hasOne(models.userType, {
+      foreignKey: "id",
+      sourceKey: "userTypeId",
+    });
+  };
   return user;
 };
