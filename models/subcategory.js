@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    isActive: {
+      type: DataTypes.BOOLEAN,
+      defaulValue: true,
+    },
   });
   subcategory.associate = (models) => {
     subcategory.hasOne(models.category, {

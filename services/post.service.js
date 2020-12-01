@@ -4,6 +4,10 @@ const getAllPosts = async () => {
   return await models.post.findAll();
 };
 
+const getPost = async (input) => {
+  return await models.post.findOne({ where: { id: input } });
+};
+
 const createPost = async (input) => {
   try {
     await models.post.create({ ...input });
@@ -15,4 +19,5 @@ const createPost = async (input) => {
 module.exports = {
   getAllPosts,
   createPost,
+  getPost,
 };

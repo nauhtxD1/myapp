@@ -13,6 +13,16 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/category/:categoryId", async (req, res) => {
+  try {
+    const input = req.params.categoryId;
+    const output = await subcategoryService.getSubcategoriesByCID(input);
+    response.success(res, output);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
 router.post("/", async (req, res) => {
   try {
     const input = req.body;

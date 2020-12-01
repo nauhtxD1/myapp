@@ -1,7 +1,9 @@
 const models = require("../models/index");
 
 const getAllCategories = async () => {
-  return await models.category.findAll();
+  return await models.category.findAll({
+    where: { isActive: true },
+  });
 };
 
 const createCategory = async (input) => {
