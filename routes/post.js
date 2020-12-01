@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const input = req.body;
-    await postService.createPosts(input);
+    await postService.createPost(input);
     response.success(res);
   } catch (e) {
     response.fail(res, e);

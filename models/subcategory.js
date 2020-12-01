@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    key: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
   });
   subcategory.associate = (models) => {
     subcategory.hasOne(models.category, {

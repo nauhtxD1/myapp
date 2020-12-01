@@ -32,7 +32,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     view: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       defaulValue: 0,
     },
   });

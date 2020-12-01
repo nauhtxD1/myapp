@@ -1,14 +1,18 @@
 const models = require("../models/index");
 
-const getAllPosts = () => {
-    return await models.post.findAll();
+const getAllPosts = async () => {
+  return await models.post.findAll();
 };
 
-const createPost = (input) => {
-    await models.post.create({...input});
+const createPost = async (input) => {
+  try {
+    await models.post.create({ ...input });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = {
-    getAllPosts,
-    createPost,
+  getAllPosts,
+  createPost,
 };

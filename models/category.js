@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    key: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
   });
   return category;
 };
