@@ -6,6 +6,11 @@ const getAllMarks = async () => {
   });
 };
 
+const createMark = async (input) => {
+  await models.mark.create({ ...input });
+};
+
 module.exports = {
   getAllMarks,
+  createMark,
 };

@@ -5,11 +5,11 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true,
     },
-    left: {
+    latitude: {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    right: {
+    longitude: {
       type: DataTypes.FLOAT,
       allowNull: false,
     },

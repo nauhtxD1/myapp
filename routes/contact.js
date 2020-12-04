@@ -13,4 +13,23 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/headquarters", async (req, res) => {
+  try {
+    const output = await contactServices.getHeadquatersContact();
+    response.success(res, output);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
+router.post("/", async (req, res) => {
+  try {
+    const input = req.body;
+    await contactServices.createContact(input);
+    response.success(res);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
 module.exports = router;

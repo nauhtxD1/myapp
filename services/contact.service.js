@@ -6,6 +6,18 @@ const getAllContacts = async () => {
   });
 };
 
+const getHeadquatersContact = async () => {
+  return await models.contact.findOne({
+    where: { isActive: true, isHeadquarters: true },
+  });
+};
+
+const createContact = async (input) => {
+  await models.contact.create({ ...input });
+};
+
 module.exports = {
   getAllContacts,
+  getHeadquatersContact,
+  createContact,
 };
