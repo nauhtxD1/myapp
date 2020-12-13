@@ -23,6 +23,29 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.get("/lastest-posts/:limit", async (req, res) => {
+  try {
+    const input = req.params.limit;
+    const output = await postService.getLastestPosts(input);
+    response.success(res, output);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
+router.get("/:subId/:limit", async (req, res) => {
+  try {
+    const input = {
+      subId: req.params.subId,
+      limit: req.params.limit,
+    };
+    const output = await postService.getLastestPostsBySCID(input);
+    response.success(res, output);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
 router.post("/", async (req, res) => {
   try {
     const input = req.body;

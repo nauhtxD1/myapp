@@ -1,38 +1,38 @@
 const models = require("../models/index");
 
 const getAllPosts = async () => {
-  return await models.post.findAll({
-    include: [
-      {
-        model: models.subcategory,
-        attributes: ["name"],
-      },
-    ],
-  });
+  return await models.post.scope("ms1").findAll();
 };
 
 const getPost = async (input) => {
-  return await models.post.findOne({
-    include: [
-      {
-        model: models.subcategory,
-        attributes: ["name"],
-      },
-    ],
+  return await models.post.scope("ms1").findOne({
     where: { id: input },
   });
 };
 
+const getLastestPosts = async (input) => {
+  return await models.post.scope("ms1").findAll({
+    order: [["updatedAt", "DESC"]],
+    limit: input,
+  });
+};
+
+const getLastestPostsBySCID = async (input) => {
+  return await models.post.findAll({
+    where: { subcategoryId: input.id },
+    order: [["updatedAt", "DESC"]],
+    limit: input.limit,
+  });
+};
+
 const createPost = async (input) => {
-  try {
-    await models.post.create({ ...input });
-  } catch (error) {
-    console.log(error);
-  }
+  await models.post.create({ ...input });
 };
 
 module.exports = {
   getAllPosts,
-  createPost,
   getPost,
+  getLastestPosts,
+  getLastestPostsBySCID,
+  createPost,
 };
