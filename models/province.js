@@ -12,6 +12,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
     },
+    weatherId: {
+      type: DataTypes.INTEGER,
+      unique: true,
+    },
+    latitude: {
+      type: DataTypes.FLOAT,
+    },
+    longitude: {
+      type: DataTypes.FLOAT,
+    },
   });
   return province;
 };

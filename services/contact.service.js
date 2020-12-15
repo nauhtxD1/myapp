@@ -1,14 +1,19 @@
 const models = require("../models/index");
 
 const getAllContacts = async () => {
-  return await models.contact.findAll({
-    where: { isActive: true },
+  return await models.contact.scope("ms1").findAll({
+    include: [
+      {
+        model: models.province,
+        attributes: ["provinceName", "weatherId", "latitude", "longitude"],
+      },
+    ],
   });
 };
 
 const getHeadquatersContact = async () => {
-  return await models.contact.findOne({
-    where: { isActive: true, isHeadquarters: true },
+  return await models.contact.scope("ms1").findOne({
+    where: { isHeadquarters: true },
   });
 };
 
