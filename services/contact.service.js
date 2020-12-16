@@ -1,5 +1,5 @@
 const models = require("../models/index");
-
+const sequelize = require("sequelize");
 const getAllContacts = async () => {
   return await models.contact.scope("ms1").findAll({
     include: [
@@ -17,6 +17,18 @@ const getHeadquatersContact = async () => {
   });
 };
 
+const getCityList = async () => {
+  return await models.contact.scope("ms1").findAll({
+    attributes: [],
+    include: [
+      {
+        model: models.province,
+        attributes: ["provinceName", "weatherId", "latitude", "longitude", "geo"],
+      },
+    ],
+  });
+};
+
 const createContact = async (input) => {
   await models.contact.create({ ...input });
 };
@@ -24,5 +36,6 @@ const createContact = async (input) => {
 module.exports = {
   getAllContacts,
   getHeadquatersContact,
+  getCityList,
   createContact,
 };

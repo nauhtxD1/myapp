@@ -22,6 +22,15 @@ router.get("/headquarters", async (req, res) => {
   }
 });
 
+router.get("/city-list", async (req, res) => {
+  try {
+    const output = await contactServices.getCityList();
+    response.success(res, output);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
 router.post("/", async (req, res) => {
   try {
     const input = req.body;

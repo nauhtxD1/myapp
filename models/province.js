@@ -22,6 +22,9 @@ module.exports = (sequelize, DataTypes) => {
     longitude: {
       type: DataTypes.FLOAT,
     },
+    geo: {
+      type: DataTypes.JSON,
+    }
   });
   return province;
 };
