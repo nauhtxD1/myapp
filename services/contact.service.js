@@ -13,6 +13,12 @@ const getAllContacts = async () => {
 
 const getHeadquatersContact = async () => {
   return await models.contact.scope("ms1").findOne({
+    include: [
+      {
+        model: models.province,
+        attributes: ["latitude", "longitude"],
+      },
+    ],
     where: { isHeadquarters: true },
   });
 };
@@ -23,7 +29,13 @@ const getCityList = async () => {
     include: [
       {
         model: models.province,
-        attributes: ["provinceName", "weatherId", "latitude", "longitude", "geo"],
+        attributes: [
+          "provinceName",
+          "weatherId",
+          "latitude",
+          "longitude",
+          "geo",
+        ],
       },
     ],
   });
