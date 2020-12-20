@@ -13,10 +13,20 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/update/:id", async (req, res) => {
   try {
     const input = { ...req.body, id: req.params.id };
     await userService.updateUser(input);
+    response.success(res);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
+router.put("/delete/:id", async (req, res) => {
+  try {
+    const input = req.params.id;
+    await userService.deleteUser(input);
     response.success(res);
   } catch (e) {
     response.fail(res, e);

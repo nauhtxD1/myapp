@@ -24,6 +24,15 @@ const updateUser = async (input) => {
   }
 };
 
+const deleteUser = async (id) => {
+  try {
+    const user = await checkUserExists(id);
+    await user.update({ isActive: false }, { where: id });
+  } catch (e) {
+    throw e;
+  }
+};
+
 const checkUserExists = async (id) => {
   const user = await models.user.findOne({ where: { id } });
   if (!user) {
@@ -36,5 +45,6 @@ module.exports = {
   getAllUsers,
   createUsers,
   updateUser,
+  deleteUser,
   checkUserExists,
 };
