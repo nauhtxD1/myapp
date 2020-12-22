@@ -17,9 +17,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    image: {
+    img: {
       type: DataTypes.TEXT,
-      allowNull: false,
     },
     genusId: {
       type: DataTypes.INTEGER,
@@ -32,6 +31,10 @@ module.exports = (sequelize, DataTypes) => {
     isActive: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
+    },
+    define: {
+      type: DataTypes.TEXT,
+      allowNull: false,
     },
   });
   genusFeature.associate = (models) => {

@@ -13,6 +13,17 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
     },
+    define: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    img: {
+      type: DataTypes.TEXT,
+    },
+    scienceName: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
   });
   return family;
 };
