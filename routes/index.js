@@ -12,6 +12,14 @@ const family = require("./family");
 const genus = require("./genus");
 const genusFeature = require("./genusFeature");
 const province = require("./province");
+const status = require("./status");
+const problem = require("./problem");
+const epidemic = require("./epidemic");
+const epidemicHistory = require("./epidemicHistory");
+const land = require("./land");
+const household = require("./household");
+const plant = require("./plant");
+const plantHistory = require("./plantHistory");
 
 router.use("/users", user);
 router.use("/userTypes", userType);
@@ -25,5 +33,13 @@ router.use("/families", family);
 router.use("/genera", genus);
 router.use("/genusFeatures", genusFeature);
 router.use("/provinces", province);
+router.use("/statuses", status);
+router.use("/problems", problem);
+router.use("/epidemics", epidemic);
+router.use("/epidemicHistories", epidemicHistory);
+router.use("/lands", land);
+router.use("/households", household);
+router.use("/plants", plant);
+router.use("/plantHistories", plantHistory);
 
 module.exports = router;

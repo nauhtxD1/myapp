@@ -36,7 +36,7 @@ const deleteUser = async (id) => {
 const checkUserExists = async (id) => {
   const user = await models.user.findOne({ where: { id } });
   if (!user) {
-    throw new CustomError({ message: "Post not exists" });
+    throw new CustomError({ message: "User not exists" });
   }
   return user;
 };
