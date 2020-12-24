@@ -7,6 +7,7 @@ const getAllUsers = async () => {
       model: models.userType,
       attributes: ["name"],
     },
+    where: { isActive: true },
   });
 };
 
