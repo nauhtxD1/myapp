@@ -28,7 +28,7 @@ const updateUser = async (input) => {
 const deleteUser = async (id) => {
   try {
     const user = await checkUserExists(id);
-    await user.update({ isActive: false }, { where: id });
+    await user.update({ isActive: false });
   } catch (e) {
     throw e;
   }

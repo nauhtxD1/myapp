@@ -4,9 +4,10 @@ const getAllPosts = async () => {
   return await models.post.scope("ms1").findAll();
 };
 
-const getPost = async (input) => {
+const getPost = async (id) => {
+  increaseView(id);
   return await models.post.scope("ms1").findOne({
-    where: { id: input },
+    where: { id },
   });
 };
 
@@ -28,6 +29,7 @@ const getLastestPostsBySCID = async (input) => {
 const createPost = async (input) => {
   await models.post.create({ ...input });
 };
+
 const deletePost = async (id) => {
   try {
     const post = await checkPostExists(id);
@@ -55,6 +57,10 @@ const checkPostExists = async (id) => {
   return post;
 };
 
+const increaseView = async (id) => {
+  await models.post.increment({ view: +1 }, { where: { id } });
+};
+
 module.exports = {
   getAllPosts,
   getPost,
@@ -64,4 +70,5 @@ module.exports = {
   deletePost,
   updatePost,
   checkPostExists,
+  increaseView,
 };
