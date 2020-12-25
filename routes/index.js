@@ -20,6 +20,8 @@ const land = require("./land");
 const household = require("./household");
 const plant = require("./plant");
 const plantHistory = require("./plantHistory");
+const manure = require("./manure");
+const pestControl = require("./pestControl");
 
 router.use("/users", user);
 router.use("/userTypes", userType);
@@ -41,5 +43,7 @@ router.use("/lands", land);
 router.use("/households", household);
 router.use("/plants", plant);
 router.use("/plantHistories", plantHistory);
+router.use("/manures", manure);
+router.use("/pestControls", pestControl);
 
 module.exports = router;

@@ -28,6 +28,32 @@ const getLastestPostsBySCID = async (input) => {
 const createPost = async (input) => {
   await models.post.create({ ...input });
 };
+const deletePost = async (id) => {
+  try {
+    const post = await checkPostExists(id);
+    await post.update({ isActive: false });
+  } catch (e) {
+    throw e;
+  }
+};
+
+const updatePost = async (input) => {
+  const { id } = input;
+  try {
+    const post = await checkPostExists(id);
+    await post.update({ ...input });
+  } catch (e) {
+    throw e;
+  }
+};
+
+const checkPostExists = async (id) => {
+  const post = await models.post.findOne({ where: { id } });
+  if (!post) {
+    throw new CustomError({ message: "Post not exists" });
+  }
+  return post;
+};
 
 module.exports = {
   getAllPosts,
@@ -35,4 +61,7 @@ module.exports = {
   getLastestPosts,
   getLastestPostsBySCID,
   createPost,
+  deletePost,
+  updatePost,
+  checkPostExists,
 };
