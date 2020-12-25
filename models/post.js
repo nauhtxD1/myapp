@@ -1,4 +1,3 @@
-const subcategory = require("./subcategory");
 module.exports = (sequelize, DataTypes) => {
   const post = sequelize.define(
     "post",
@@ -40,7 +39,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       scopes: {
-        ms1: {},
+        ms1: {
+          include: "subcategory",
+        },
       },
     }
   );
