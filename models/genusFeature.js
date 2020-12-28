@@ -36,6 +36,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    nutrition: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
   });
   genusFeature.associate = (models) => {
     genusFeature.hasOne(models.genus, {

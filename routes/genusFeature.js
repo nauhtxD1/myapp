@@ -25,7 +25,7 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const input = { name: "" };
+    const input = req.body;
     await genusFeatureService.createGenusFeature(input);
     response.success(res);
   } catch (e) {

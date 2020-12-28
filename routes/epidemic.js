@@ -23,4 +23,24 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.put("/update/:id", async (req, res) => {
+  try {
+    const input = { ...req.body, id: req.params.id };
+    await epidemicServices.updateEpidemic(input);
+    response.success(res);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
+router.put("/delete/:id", async (req, res) => {
+  try {
+    const input = req.params.id;
+    await epidemicServices.deleteEpidemic(input);
+    response.success(res);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
 module.exports = router;
