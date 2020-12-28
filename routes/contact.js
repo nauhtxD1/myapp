@@ -44,7 +44,7 @@ router.post("/", async (req, res) => {
 router.put("/delete/:id", async (req, res) => {
   try {
     const input = req.params.id;
-    await contactService.deleteContact(input);
+    await contactServices.deleteContact(input);
     response.success(res);
   } catch (e) {
     response.fail(res, e);
@@ -54,7 +54,7 @@ router.put("/delete/:id", async (req, res) => {
 router.put("/update/:id", async (req, res) => {
   try {
     const input = { ...req.body, id: req.params.id };
-    await contactService.updateContact(input);
+    await contactServices.updateContact(input);
     response.success(res);
   } catch (e) {
     response.fail(res, e);

@@ -1,7 +1,7 @@
 const express = require("express");
 
 const response = require("../common/libs/response");
-const commentService = require("../services/comment.service");
+const commentServices = require("../services/comment.service");
 const router = express.Router();
 
 router.get("/", async (req, res) => {

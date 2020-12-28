@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
 router.put("/delete/:id", async (req, res) => {
   try {
     const input = req.params.id;
-    await markService.deleteMark(input);
+    await markServices.deleteMark(input);
     response.success(res);
   } catch (e) {
     response.fail(res, e);
@@ -36,7 +36,7 @@ router.put("/delete/:id", async (req, res) => {
 router.put("/update/:id", async (req, res) => {
   try {
     const input = { ...req.body, id: req.params.id };
-    await markService.updateMark(input);
+    await markServices.updateMark(input);
     response.success(res);
   } catch (e) {
     response.fail(res, e);

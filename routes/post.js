@@ -1,12 +1,12 @@
 const express = require("express");
 
 const response = require("../common/libs/response");
-const postService = require("../services/post.service");
+const postServices = require("../services/post.service");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const output = await postService.getAllPosts();
+    const output = await postServices.getAllPosts();
     response.success(res, output);
   } catch (e) {
     response.fail(res, e);
@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const input = req.params.id;
-    const output = await postService.getPost(input);
+    const output = await postServices.getPost(input);
     response.success(res, output);
   } catch (e) {
     response.fail(res, e);
@@ -26,7 +26,7 @@ router.get("/:id", async (req, res) => {
 router.get("/lastest-posts/:limit", async (req, res) => {
   try {
     const input = req.params.limit;
-    const output = await postService.getLastestPosts(input);
+    const output = await postServices.getLastestPosts(input);
     response.success(res, output);
   } catch (e) {
     response.fail(res, e);
@@ -39,7 +39,7 @@ router.get("/:subId/:limit", async (req, res) => {
       subId: req.params.subId,
       limit: req.params.limit,
     };
-    const output = await postService.getLastestPostsBySCID(input);
+    const output = await postServices.getLastestPostsBySCID(input);
     response.success(res, output);
   } catch (e) {
     response.fail(res, e);
@@ -49,7 +49,7 @@ router.get("/:subId/:limit", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const input = req.body;
-    await postService.createPost(input);
+    await postServices.createPost(input);
     response.success(res);
   } catch (e) {
     response.fail(res, e);
@@ -59,7 +59,7 @@ router.post("/", async (req, res) => {
 router.put("/delete/:id", async (req, res) => {
   try {
     const input = req.params.id;
-    await postService.deletePost(input);
+    await postServices.deletePost(input);
     response.success(res);
   } catch (e) {
     response.fail(res, e);
@@ -69,7 +69,7 @@ router.put("/delete/:id", async (req, res) => {
 router.put("/update/:id", async (req, res) => {
   try {
     const input = { ...req.body, id: req.params.id };
-    await postService.updatePost(input);
+    await postServices.updatePost(input);
     response.success(res);
   } catch (e) {
     response.fail(res, e);

@@ -1,13 +1,13 @@
 const express = require("express");
 
 const response = require("../common/libs/response");
-const provinceService = require("../services/province.service");
+const provinceServices = require("../services/province.service");
 const router = express.Router();
 
 router.get("/:id", async (req, res) => {
   try {
     const input = req.params.id;
-    const output = await provinceService.getProvinceById(input);
+    const output = await provinceServices.getProvinceById(input);
     response.success(res, output);
   } catch (e) {
     response.fail(res, e);
@@ -16,7 +16,7 @@ router.get("/:id", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const output = await provinceService.getAllProvinces();
+    const output = await provinceServices.getAllProvinces();
     response.success(res, output);
   } catch (e) {
     response.fail(res, e);

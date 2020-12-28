@@ -1,13 +1,13 @@
 const express = require("express");
 
 const response = require("../common/libs/response");
-const plantHistoryService = require("../services/plantHistory.service");
+const plantHistoryServices = require("../services/plantHistory.service");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
     const input = req.params.plantId;
-    const output = await plantHistoryService.getAllPlantHistories(input);
+    const output = await plantHistoryServices.getAllPlantHistories(input);
     response.success(res, output);
   } catch (e) {
     response.fail(res, e);

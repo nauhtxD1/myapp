@@ -1,10 +1,9 @@
-const model = require("..models/index");
-const models = require("repl");
+const models = require("../models/index");
 
 const getAllPlantingTechniques = async () => {
   return await models.plantingTechnique.scope("ms1").findAll({
     include: {
-      model: model.genusFeature,
+      model: models.genusFeature,
       attributes: ["name"],
     },
   });

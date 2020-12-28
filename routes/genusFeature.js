@@ -1,12 +1,12 @@
 const express = require("express");
 
 const response = require("../common/libs/response");
-const genusFeatureService = require("../services/genusFeature.service");
+const genusFeatureServices = require("../services/genusFeature.service");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const output = await genusFeatureService.getAllGenusFeatures();
+    const output = await genusFeatureServices.getAllGenusFeatures();
     response.success(res, output);
   } catch (e) {
     response.fail(res, e);
@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const input = req.params.id;
-    const output = await genusFeatureService.getGenusFeatureById(input);
+    const output = await genusFeatureServices.getGenusFeatureById(input);
     response.success(res, output);
   } catch (e) {
     response.fail(res, e);
@@ -26,7 +26,7 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const input = req.body;
-    await genusFeatureService.createGenusFeature(input);
+    await genusFeatureServices.createGenusFeature(input);
     response.success(res);
   } catch (e) {
     response.fail(res, e);

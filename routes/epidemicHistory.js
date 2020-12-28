@@ -1,12 +1,12 @@
 const express = require("express");
 
 const response = require("../common/libs/response");
-const epidemicHistoryService = require("../services//epidemicHistory.service");
+const epidemicHistoryServices = require("../services//epidemicHistory.service");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const output = await epidemicHistoryService.getAllEpidemicHistories();
+    const output = await epidemicHistoryServices.getAllEpidemicHistories();
     response.success(res, output);
   } catch (e) {
     response.fail(res, e);

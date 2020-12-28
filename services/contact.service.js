@@ -1,5 +1,5 @@
 const models = require("../models/index");
-const sequelize = require("sequelize");
+const markServices = require("./mark.service");
 const getAllContacts = async () => {
   return await models.contact.scope("ms1").findAll({
     include: [
@@ -43,11 +43,39 @@ const getCityList = async () => {
 
 const createContact = async (input) => {
   await models.contact.create({ ...input });
+  await markServices.createMark(input.id);
 };
 
+const deleteContact = async (id) => {
+  try {
+    const contact = await checkContactExists(id);
+    await contact.update({ isActive: false });
+  } catch (e) {
+    throw e;
+  }
+};
+const updateContact = async (input) => {
+  try {
+    const contact = await checkContactExists(id);
+    await contact.update({ ...input });
+  } catch (e) {
+    throw e;
+  }
+};
+
+const checkContactExists = async (id) => {
+  const contact = await models.contact.findOne({ where: { id } });
+  if (!contact) {
+    throw new CustomError({ message: "Contact not exists" });
+  }
+  return contact;
+};
 module.exports = {
   getAllContacts,
   getHeadquatersContact,
   getCityList,
   createContact,
+  deleteContact,
+  updateContact,
+  checkContactExists,
 };

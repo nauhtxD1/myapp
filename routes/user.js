@@ -1,12 +1,12 @@
 const express = require("express");
 
 const response = require("../common/libs/response");
-const userService = require("../services/user.service");
+const userServices = require("../services/user.service");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const output = await userService.getAllUsers();
+    const output = await userServices.getAllUsers();
     response.success(res, output);
   } catch (e) {
     response.fail(res, e);
@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 router.put("/update/:id", async (req, res) => {
   try {
     const input = { ...req.body, id: req.params.id };
-    await userService.updateUser(input);
+    await userServices.updateUser(input);
     response.success(res);
   } catch (e) {
     response.fail(res, e);
@@ -26,7 +26,7 @@ router.put("/update/:id", async (req, res) => {
 router.put("/delete/:id", async (req, res) => {
   try {
     const input = req.params.id;
-    await userService.deleteUser(input);
+    await userServices.deleteUser(input);
     response.success(res);
   } catch (e) {
     response.fail(res, e);
@@ -36,7 +36,7 @@ router.put("/delete/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const input = { ...req.body };
-    await userService.createUsers(input);
+    await userServices.createUsers(input);
     response.success(res);
   } catch (e) {
     response.fail(res, e);
