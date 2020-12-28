@@ -33,6 +33,7 @@ const getLastestManuresBySCID = async (input) => {
 const createManure = async (input) => {
   await models.manure.create({ ...input });
 };
+
 const deleteManure = async (id) => {
   try {
     const manure = await checkManureExists(id);

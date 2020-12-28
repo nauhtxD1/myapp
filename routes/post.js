@@ -56,20 +56,20 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.post("/delete/:id", async (req, res) => {
+router.put("/delete/:id", async (req, res) => {
   try {
-    const input = { ...req.body };
-    await postService.createPost(input);
+    const input = req.params.id;
+    await postService.deletePost(input);
     response.success(res);
   } catch (e) {
     response.fail(res, e);
   }
 });
 
-router.post("/update/:id", async (req, res) => {
+router.put("/update/:id", async (req, res) => {
   try {
     const input = { ...req.body, id: req.params.id };
-    await postService.createPost(input);
+    await postService.updatePost(input);
     response.success(res);
   } catch (e) {
     response.fail(res, e);

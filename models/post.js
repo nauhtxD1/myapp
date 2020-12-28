@@ -36,11 +36,16 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         defaulValue: 0,
       },
+      isActive: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      },
     },
     {
       scopes: {
         ms1: {
           include: "subcategory",
+          where: { isActive: true },
         },
       },
     }

@@ -33,7 +33,7 @@ const updateProblem = async (input) => {
 const deleteProblem = async (id) => {
   try {
     const problem = await checkProblemExists(id);
-    await problem.update({ isActive: false }, { where: id });
+    await problem.update({ isActive: false });
   } catch (e) {
     throw e;
   }
