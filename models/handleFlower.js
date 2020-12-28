@@ -1,6 +1,3 @@
-const { DataTypes } = require("sequelize/types");
-const { sequelize } = require(".");
-
 module.exports = (sequelize, DataTypes) => {
   const handleFlower = sequelize.define(
     "handleFlower",
@@ -29,4 +26,5 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
+  return handleFlower;
 };
