@@ -27,6 +27,15 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: true,
       },
     },
-    {}
+    {
+      scope: { ms1: {} },
+    }
   );
+  handleFlower.associate = (models) => {
+    handleFlower.hasOne(models.subcategory, {
+      foreignKey: "Id",
+      sourceKey: "genusFeatureId",
+    });
+  };
+  return handleFlower;
 };
