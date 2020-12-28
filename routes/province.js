@@ -14,4 +14,13 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.get("/", async (req, res) => {
+  try {
+    const output = await provinceService.getAllProvinces();
+    response.success(res, output);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
 module.exports = router;
