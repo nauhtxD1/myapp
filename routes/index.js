@@ -24,6 +24,7 @@ const manure = require("./manure");
 const pestControl = require("./pestControl");
 const characteristic = require("./characteristic");
 const plantingTechnique = require("./plantingTechnique");
+const handleFlower = require("./handleFlower");
 
 router.use("/users", user);
 router.use("/userTypes", userType);
@@ -49,5 +50,6 @@ router.use("/manures", manure);
 router.use("/pestControls", pestControl);
 router.use("/characteristics", characteristic);
 router.use("/plantingTechniques", plantingTechnique);
+router.use("/handleFlowers", handleFlower);
 
 module.exports = router;
