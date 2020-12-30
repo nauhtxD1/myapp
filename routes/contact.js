@@ -31,6 +31,15 @@ router.get("/city-list", async (req, res) => {
   }
 });
 
+router.get("/pos-geo", async (req, res) => {
+  try {
+    const output = await contactServices.getPosGeo();
+    response.success(res, output);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
 router.post("/", async (req, res) => {
   try {
     const input = req.body;

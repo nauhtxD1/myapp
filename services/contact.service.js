@@ -29,7 +29,19 @@ const getCityList = async () => {
     include: [
       {
         model: models.province,
-        attributes: ["weatherId", "latitude", "longitude", "geo"],
+        attributes: ["weatherId", "geo"],
+      },
+    ],
+  });
+};
+
+const getPosGeo = async () => {
+  return await models.contact.scope("ms1").findAll({
+    attributes: [],
+    include: [
+      {
+        model: models.province,
+        attributes: ["latitude", "longitude", "geo"],
       },
     ],
   });
@@ -67,6 +79,7 @@ module.exports = {
   getAllContacts,
   getHeadquatersContact,
   getCityList,
+  getPosGeo,
   createContact,
   deleteContact,
   updateContact,
