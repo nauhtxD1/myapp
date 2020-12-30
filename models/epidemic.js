@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
     symptoms: {
       type: DataTypes.TEXT,
     },
+    pesticides: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
     isActive: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,

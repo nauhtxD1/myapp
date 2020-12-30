@@ -25,6 +25,14 @@ module.exports = (sequelize, DataTypes) => {
       phone: {
         type: DataTypes.TEXT,
       },
+      latitude: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+      },
+      longitude: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+      },
       isActive: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
