@@ -1,5 +1,5 @@
 const models = require("../models/index");
-const markServices = require("./mark.service");
+
 const getAllContacts = async () => {
   return await models.contact.scope("ms1").findAll({
     include: [
