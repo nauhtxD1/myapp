@@ -29,13 +29,7 @@ const getCityList = async () => {
     include: [
       {
         model: models.province,
-        attributes: [
-          "provinceName",
-          "weatherId",
-          "latitude",
-          "longitude",
-          "geo",
-        ],
+        attributes: ["weatherId", "latitude", "longitude", "geo"],
       },
     ],
   });
@@ -43,7 +37,6 @@ const getCityList = async () => {
 
 const createContact = async (input) => {
   await models.contact.create({ ...input });
-  await markServices.createMark(input.id);
 };
 
 const deleteContact = async (id) => {
