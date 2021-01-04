@@ -6,6 +6,22 @@ const getAllComments = async () => {
   });
 };
 
+const getAllCommentsByPID = async (postId) => {
+  return await models.comment.findAll({
+    include: {
+      model: models.user,
+      attributes: ["username"],
+    },
+    where: { postId, isActive: true },
+  });
+};
+
+const createComment = async (input) => {
+  await models.comment.create({ ...input });
+};
+
 module.exports = {
   getAllComments,
+  getAllCommentsByPID,
+  createComment,
 };
