@@ -22,5 +22,15 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: true,
     },
   });
+  comment.associate = (models) => {
+    comment.hasOne(models.user, {
+      foreignKey: "id",
+      sourceKey: "userId",
+    });
+    comment.hasOne(models.post, {
+      foreignKey: "id",
+      sourceKey: "postId",
+    });
+  };
   return comment;
 };
