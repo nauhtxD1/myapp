@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     },
     landArea: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.REAL,
       allowNull: false,
     },
     userId: {

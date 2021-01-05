@@ -12,5 +12,33 @@ router.get("/", async (req, res) => {
     response.fail(res, e);
   }
 });
+router.post("/", async (req, res) => {
+  try {
+    const input = req.body;
+    await landServices.createLand(input);
+    response.success(res);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
 
+router.put("/update/:id", async (req, res) => {
+  try {
+    const input = { ...req.body, id: req.params.id };
+    await landServices.updateLand(input);
+    response.success(res);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
+router.put("/delete/:id", async (req, res) => {
+  try {
+    const input = req.params.id;
+    await landServices.deleteLand(input);
+    response.success(res);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
 module.exports = router;

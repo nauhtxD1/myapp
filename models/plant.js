@@ -10,12 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     age: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    status: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true,
+      type: "TIMESTAMP",
     },
     householdId: {
       type: DataTypes.INTEGER,
@@ -24,6 +19,9 @@ module.exports = (sequelize, DataTypes) => {
     isActive: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
+    },
+    root: {
+      type: DataTypes.INTEGER,
     },
   });
   plant.associate = (models) => {
