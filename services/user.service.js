@@ -42,10 +42,25 @@ const checkUserExists = async (id) => {
   return user;
 };
 
+const getLoginToken = async (input) => {
+  const user = await models.user.findOne({
+    include: {
+      model: models.userType,
+      attributes: ["token"],
+    },
+    where: { username: input.username, password: input.password },
+  });
+  if (!user) {
+    throw new CustomError({ message: "User not exists or wrong password" });
+  }
+  return user.userType.dataValues.token;
+};
+
 module.exports = {
   getAllUsers,
   createUsers,
   updateUser,
   deleteUser,
   checkUserExists,
+  getLoginToken,
 };

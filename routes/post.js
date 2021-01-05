@@ -23,6 +23,16 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.get("/list/:id", async (req, res) => {
+  try {
+    const input = req.params.id;
+    const output = await postServices.getPostsBySCID(input);
+    response.success(res, output);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
 router.get("/lastest-posts/:limit", async (req, res) => {
   try {
     const input = req.params.limit;
@@ -33,7 +43,7 @@ router.get("/lastest-posts/:limit", async (req, res) => {
   }
 });
 
-router.get("/:subId/:limit", async (req, res) => {
+router.get("/lastest-posts/:subId/:limit", async (req, res) => {
   try {
     const input = {
       subId: req.params.subId,

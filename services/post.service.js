@@ -20,9 +20,20 @@ const getLastestPosts = async (input) => {
 
 const getLastestPostsBySCID = async (input) => {
   return await models.post.findAll({
-    where: { subcategoryId: input.id },
+    where: { subcategoryId: input.subId },
     order: [["updatedAt", "DESC"]],
     limit: input.limit,
+  });
+};
+
+const getPostsBySCID = async (subcategoryId) => {
+  return await models.post.findAll({
+    include: {
+      model: models.subcategory,
+      attributes: ["name"],
+    },
+    where: { subcategoryId },
+    order: [["updatedAt", "DESC"]],
   });
 };
 
@@ -71,4 +82,5 @@ module.exports = {
   updatePost,
   checkPostExists,
   increaseView,
+  getPostsBySCID,
 };
