@@ -13,10 +13,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.REAL,
       allowNull: false,
     },
-    performance: {
-      type: DataTypes.REAL,
-      allowNull: false,
-    },
     isActive: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,

@@ -16,6 +16,11 @@ const getAllPlantsByHID = async (householdId) => {
   });
 };
 
+const getAllPlants = async () => {
+  return await models.plant.findAll();
+};
+
 module.exports = {
   getAllPlantsByHID,
+  getAllPlants,
 };

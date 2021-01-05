@@ -6,6 +6,15 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
+    const output = await plantServices.getAllPlants();
+    response.success(res, output);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  try {
     const input = req.params.householdId;
     const output = await plantServices.getAllPlantsByHID(input);
     response.success(res, output);

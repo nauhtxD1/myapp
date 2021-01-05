@@ -11,10 +11,24 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      technique: DataTypes.TEXT,
+      technique: {
+        type: DataTypes.TEXT,
+      },
       isActive: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
+      },
+      seed: {
+        type: DataTypes.TEXT,
+      },
+      time: {
+        type: DataTypes.TEXT,
+      },
+      density: {
+        type: DataTypes.TEXT,
+      },
+      soilPreparation: {
+        type: DataTypes.TEXT,
       },
     },
     {

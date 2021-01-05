@@ -11,11 +11,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     productivity: {
       type: DataTypes.TEXT,
-      allowNull: false,
     },
     harvestTime: {
       type: DataTypes.TEXT,
-      allowNull: false,
     },
     img: {
       type: DataTypes.TEXT,
@@ -26,7 +24,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     provinceId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
     isActive: {
       type: DataTypes.BOOLEAN,
@@ -34,9 +31,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     define: {
       type: DataTypes.TEXT,
-      allowNull: false,
     },
     nutrition: {
+      type: DataTypes.TEXT,
+    },
+    scienceName: {
       type: DataTypes.TEXT,
     },
   });
