@@ -51,7 +51,7 @@ router.use("/characteristics", characteristic);
 router.use("/plantingTechniques", plantingTechnique);
 router.use("/handleFlowers", handleFlower);
 router.use("/documents", document);
-router.use("/documentType", documentType);
+router.use("/documentTypes", documentType);
 router.use("/fields", field);
 
 module.exports = router;

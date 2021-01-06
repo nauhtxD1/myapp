@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const output = await documentTypeService.getAllDocumentType();
+    const output = await documentTypeService.getAllDocumentTypes();
     response.success(res, output);
   } catch (e) {
     response.fail(res, e);
