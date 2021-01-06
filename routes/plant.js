@@ -22,5 +22,43 @@ router.get("/:id", async (req, res) => {
     response.fail(res, e);
   }
 });
+router.get("/:id", async (req, res) => {
+  try {
+    const input = req.params.householdId;
+    const output = await plantServices.findAllPlant(input);
+    response.success(res, output);
+  } catch (e) {
+    response.fail(res.e);
+  }
+});
+router.post("/", async (req, res) => {
+  try {
+    const input = req.body;
+    await plantServices.createPlant(input);
+    response.success(res);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
+router.put("/update/:id", async (req, res) => {
+  try {
+    const input = { ...req.body, id: req.params.id };
+    await plantServices.updatePlant(input);
+    response.success(res);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
+router.put("/delete/:id", async (req, res) => {
+  try {
+    const input = req.params.id;
+    await plantServices.deletePlant(input);
+    response.success(res);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
 
 module.exports = router;
