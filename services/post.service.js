@@ -11,10 +11,13 @@ const getPost = async (id) => {
   });
 };
 
-const getLastestPosts = async (input) => {
+const getLastestPosts = async () => {
   return await models.post.scope("ms1").findAll({
+    include: {
+      model: models.subcategory,
+      attributes: ["name"],
+    },
     order: [["updatedAt", "DESC"]],
-    limit: input,
   });
 };
 

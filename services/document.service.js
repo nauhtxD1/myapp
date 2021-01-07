@@ -2,10 +2,20 @@ const models = require("../models/index");
 
 const getAllDocuments = async () => {
   return await models.document.scope("ms1").findAll({
-    include: {
-      model: models.documentType,
-      attributes: ["name"],
-    },
+    include: [
+      {
+        model: models.documentType,
+        attributes: ["name"],
+      },
+      {
+        model: models.contact,
+        attributes: ["name"],
+      },
+      {
+        model: models.field,
+        attributes: ["name"],
+      },
+    ],
   });
 };
 
@@ -16,7 +26,8 @@ const getDocument = async (input) => {
 };
 
 const getLastestDocuments = async (input) => {
-  return await models.document.scope("ms1").findAll({
+  return await models.document.findAll({
+    where: {isActive: true},
     order: [["updatedAt", "DESC"]],
     limit: input,
   });
@@ -25,6 +36,7 @@ const getLastestDocuments = async (input) => {
 const createDocument = async (input) => {
   await models.document.create({ ...input });
 };
+
 const deleteDocument = async (id) => {
   try {
     const document = await checkDocumentExists(id);

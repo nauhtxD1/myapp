@@ -33,10 +33,9 @@ router.get("/list/:id", async (req, res) => {
   }
 });
 
-router.get("/lastest-posts/:limit", async (req, res) => {
+router.get("/lastest-posts/all", async (req, res) => {
   try {
-    const input = req.params.limit;
-    const output = await postServices.getLastestPosts(input);
+    const output = await postServices.getLastestPosts();
     response.success(res, output);
   } catch (e) {
     response.fail(res, e);

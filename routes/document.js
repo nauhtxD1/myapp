@@ -13,6 +13,16 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/lastest-docs/:limit", async (req, res) => {
+  try {
+    const input = req.params.limit;
+    const output = await documentServices.getLastestDocuments(input);
+    response.success(res, output);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
 router.post("/", async (req, res) => {
   try {
     const input = req.body;

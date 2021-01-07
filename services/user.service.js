@@ -53,7 +53,7 @@ const getLoginToken = async (input) => {
   if (!user) {
     throw new CustomError({ message: "User not exists or wrong password" });
   }
-  return user.userType.dataValues.token;
+  return { uid: user.id, token: user.userType.dataValues.token };
 };
 
 module.exports = {

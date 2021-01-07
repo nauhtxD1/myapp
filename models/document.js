@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       scopes: {
-        ms1: { where: { isActive: true } },
+        ms1: { where: { isActive: true }, order: [["id", "ASC"]] },
       },
     }
   );

@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
   try {
     const input = {
       content: 'test comment 1',
-      postId: 3,
+      postId: 11,
       userId: 1
     };
     await commentServices.createComment(input);
