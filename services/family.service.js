@@ -1,4 +1,5 @@
 const models = require("../models/index");
+const genusServices = require("../services/genus.service");
 
 const getAllFamilies = async () => {
   return await models.family.findAll({
@@ -7,9 +8,11 @@ const getAllFamilies = async () => {
 };
 
 const getFamilyById = async (id) => {
-  return await models.family.findOne({
+  const data = await models.family.findOne({
     where: { id: id, isActive: true },
   });
+  const genera = await genusServices.getGeneraByFID(id);
+  return { data, genera };
 };
 
 const createFamily = async (input) => {

@@ -8,20 +8,31 @@ const getAllPlantingTechniques = async () => {
     },
   });
 };
+
+const getAllPlantingTechniquesByGFID = async (genusFeatureId) => {
+  return await models.plantingTechnique.scope("ms1").findAll({
+    where: { genusFeatureId },
+    order: [["id", "ASC"]],
+  });
+};
+
 const getPlantingTechnique = async (input) => {
   return await models.plantingTechnique.scope("ms1").findOne({
     where: { id: input },
   });
 };
+
 const getLastestPlantingTechnique = async (input) => {
   return await models.plantingTechnique.scope("ms1").findAll({
     order: [["updateAt", "DESC"]],
     limit: input,
   });
 };
+
 const createPlantingTechnique = async (input) => {
   await models.plantingTechnique.create({ ...input });
 };
+
 const deletePlantingTechnique = async (id) => {
   try {
     const plantingTechnique = await checkPlantingTechniqueExists(id);
@@ -30,6 +41,7 @@ const deletePlantingTechnique = async (id) => {
     throw e;
   }
 };
+
 const updatePlantingTechnique = async (input) => {
   const { id } = input;
   try {
@@ -39,6 +51,7 @@ const updatePlantingTechnique = async (input) => {
     throw e;
   }
 };
+
 const checkPlantingTechniqueExists = async (id) => {
   const plantingTechnique = await models.plantingTechnique.findOne({
     where: { id },
@@ -48,6 +61,7 @@ const checkPlantingTechniqueExists = async (id) => {
   }
   return plantingTechnique;
 };
+
 module.exports = {
   checkPlantingTechniqueExists,
   updatePlantingTechnique,
@@ -56,4 +70,5 @@ module.exports = {
   getLastestPlantingTechnique,
   getPlantingTechnique,
   getAllPlantingTechniques,
+  getAllPlantingTechniquesByGFID,
 };

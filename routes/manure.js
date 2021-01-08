@@ -13,6 +13,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+
 router.post("/", async (req, res) => {
   try {
     const input = req.body;
@@ -42,4 +43,5 @@ router.put("/delete/:id", async (req, res) => {
     response.fail(res, e);
   }
 });
+
 module.exports = router;

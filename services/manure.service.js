@@ -22,11 +22,10 @@ const getLastestManures = async (input) => {
   });
 };
 
-const getLastestManuresBySCID = async (input) => {
+const getAllManuresByGFID = async (genusFeatureId) => {
   return await models.manure.findAll({
-    where: { genusFeatureId: input.id },
-    order: [["updatedAt", "DESC"]],
-    limit: input.limit,
+    where: { genusFeatureId },
+    order: [["id", "ASC"]],
   });
 };
 
@@ -65,7 +64,7 @@ module.exports = {
   getAllManures,
   getManure,
   getLastestManures,
-  getLastestManuresBySCID,
+  getAllManuresByGFID,
   createManure,
   deleteManure,
   updateManure,

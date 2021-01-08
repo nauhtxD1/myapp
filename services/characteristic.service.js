@@ -9,6 +9,13 @@ const getAllCharacteristics = async () => {
   });
 };
 
+const getAllCharacteristicsByGFID = async (genusFeatureId) => {
+  return await models.characteristic.scope("ms1").findAll({
+    where: { genusFeatureId },
+    order: [["id", "ASC"]],
+  });
+};
+
 const getCharacteristic = async (input) => {
   return await models.characteristic.scope("ms1").findOne({
     where: { id: input },
@@ -60,4 +67,5 @@ module.exports = {
   deleteCharacteristic,
   updateCharacteristic,
   checkCharacteristicExists,
+  getAllCharacteristicsByGFID,
 };

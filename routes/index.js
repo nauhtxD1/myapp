@@ -26,6 +26,7 @@ const handleFlower = require("./handleFlower");
 const document = require("./document");
 const documentType = require("./documentType");
 const field = require("./field");
+const breeding = require("./breeding");
 
 router.use("/users", user);
 router.use("/userTypes", userType);
@@ -53,5 +54,6 @@ router.use("/handleFlowers", handleFlower);
 router.use("/documents", document);
 router.use("/documentTypes", documentType);
 router.use("/fields", field);
+router.use("/breedings", breeding);
 
 module.exports = router;

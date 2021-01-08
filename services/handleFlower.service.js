@@ -9,6 +9,13 @@ const getAllHandleFlowers = async () => {
   });
 };
 
+const getAllHandleFlowersByGFID = async (genusFeatureId) => {
+  return await models.handleFlower.scope("ms1").findAll({
+    where: { genusFeatureId },
+    order: [["id", "ASC"]],
+  });
+};
+
 const getHandleFlower = async (input) => {
   return await models.handleFlower.scope("ms1").findOne({
     where: { id: input },
@@ -60,4 +67,5 @@ module.exports = {
   deleteHandleFlower,
   updateHandleFlower,
   checkHandleFlowerExists,
+  getAllHandleFlowersByGFID,
 };

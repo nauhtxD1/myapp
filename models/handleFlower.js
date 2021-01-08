@@ -2,7 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const handleFlower = sequelize.define(
     "handleFlower",
     {
-      if: {
+      id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
@@ -25,7 +25,9 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      scope: { ms1: {} },
+      scopes: {
+        ms1: {},
+      },
     }
   );
   handleFlower.associate = (models) => {
