@@ -1,7 +1,9 @@
 const models = require("../models/index");
 
 const getAllPosts = async () => {
-  return await models.post.scope("ms1").findAll();
+  return await models.post.scope("ms1").findAll({
+    order: [["updatedAt", "DESC"]],
+  });
 };
 
 const getPost = async (id) => {
@@ -17,14 +19,14 @@ const getLastestPosts = async () => {
       model: models.subcategory,
       attributes: ["name"],
     },
-    order: [["updatedAt", "DESC"]],
+    order: [["publishAt", "DESC"]],
   });
 };
 
 const getLastestPostsBySCID = async (input) => {
   return await models.post.findAll({
     where: { subcategoryId: input.subId },
-    order: [["updatedAt", "DESC"]],
+    order: [["publishAt", "DESC"]],
     limit: input.limit,
   });
 };
@@ -36,7 +38,7 @@ const getPostsBySCID = async (subcategoryId) => {
       attributes: ["name"],
     },
     where: { subcategoryId },
-    order: [["updatedAt", "DESC"]],
+    order: [["publishAt", "DESC"]],
   });
 };
 
