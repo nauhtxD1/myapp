@@ -11,10 +11,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      stoolType: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
       method: {
         type: DataTypes.TEXT,
         allowNull: true,
