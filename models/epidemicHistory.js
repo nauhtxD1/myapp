@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const epidemicHistory = sequelize.define("epidemicHistory", {
-    plantHistoryId: {
+    plantId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
     },
@@ -10,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     content: {
       type: DataTypes.TEXT,
-      allowNull: false,
     },
     status: {
       type: DataTypes.BOOLEAN,
@@ -26,9 +25,9 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "id",
       sourceKey: "epidemicId",
     });
-    epidemicHistory.hasOne(models.plantHistory, {
+    epidemicHistory.hasOne(models.plant, {
       foreignKey: "id",
-      sourceKey: "plantHistoryId",
+      sourceKey: "plantId",
     });
   };
   return epidemicHistory;
