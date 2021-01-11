@@ -13,4 +13,13 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/count", async (req, res) => {
+  try {
+    const output = await epidemicHistoryServices.getAllCountEpidemics();
+    response.success(res, output);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
 module.exports = router;

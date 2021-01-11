@@ -1,4 +1,7 @@
 const models = require("../models/index");
+const { Sequelize, sequelize } = models;
+const { Op } = Sequelize;
+const moment = require("moment");
 
 const getAllPosts = async () => {
   return await models.post.scope("ms1").findAll({
@@ -11,6 +14,17 @@ const getPost = async (id) => {
   return await models.post.scope("ms1").findOne({
     where: { id },
   });
+};
+
+const getAllCountPosts = async () => {
+  const all = await models.post.scope("ms2").findAll({
+    attributes: [[sequelize.fn("count", sequelize.col("id")), "count"]],
+  });
+  const lastWeek = await models.post.scope("ms2").findAll({
+    attributes: [[sequelize.fn("count", sequelize.col("id")), "count"]],
+    where: { updatedAt: { [Op.gte]: moment().subtract(7, "days").toDate() } },
+  });
+  return { all, lastWeek };
 };
 
 const getLastestPosts = async () => {
@@ -88,4 +102,5 @@ module.exports = {
   checkPostExists,
   increaseView,
   getPostsBySCID,
+  getAllCountPosts,
 };

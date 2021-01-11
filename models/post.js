@@ -50,6 +50,9 @@ module.exports = (sequelize, DataTypes) => {
           include: "subcategory",
           where: { isActive: true },
         },
+        ms2: {
+          where: { isActive: true },
+        },
       },
     }
   );
