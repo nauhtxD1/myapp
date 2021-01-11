@@ -22,4 +22,34 @@ router.get("/count", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  try {
+    const input = req.body;
+    await epidemicHistoryServices.createEpidemicHistory(input);
+    response.success(res);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
+router.put("/update/:id", async (req, res) => {
+  try {
+    const input = { ...req.body, id: req.params.id };
+    await epidemicHistoryServices.updateEpidemicHistory(input);
+    response.success(res);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
+router.put("/delete/:id", async (req, res) => {
+  try {
+    const input = req.params.id;
+    await epidemicHistoryServices.deleteEpidemicHistory(input);
+    response.success(res);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
 module.exports = router;

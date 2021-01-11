@@ -36,7 +36,7 @@ const getAllPlants = async () => {
   });
 };
 
-const getLand = async (input) => {
+const getPlant = async (input) => {
   return await models.plant.scope("ms1").findOne({
     where: { id: input },
   });
@@ -87,6 +87,6 @@ module.exports = {
   deletePlant,
   createPlant,
   getLastestPlants,
-  getLand,
+  getPlant,
   findAllPlant,
 };
