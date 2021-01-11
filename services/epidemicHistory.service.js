@@ -1,5 +1,5 @@
 const models = require("../models/index");
-const sequelize = require("sequelize");
+const { Sequelize, sequelize } = models;
 
 const getAllEpidemicHistories = async () => {
   return await models.epidemicHistory.findAll({
@@ -8,33 +8,28 @@ const getAllEpidemicHistories = async () => {
 };
 
 const getAllCountEpidemics = async () => {
-  return await models.epidemicHistory.findAll({
-    include: [
-      {
-        model: models.plantHistory,
-        include: {
-          model: models.plant,
-          include: {
-            model: models.household,
-            include: {
-              model: models.province,
-              attributes: ["provinceName"],
-              group: ["provinceName"],
-            },
-          },
-        },
-      },
-      {
-        model: models.epidemic,
-        attributes: ["name"],
-      },
-    ],
-    attributes: [
-      [sequelize.fn("COUNT", sequelize.col("epidemic.name")), "number"],
-    ],
-
-    where: { isActive: true, status: true },
-  });
+  const [results] = await sequelize.query(
+    `select count(*) as count, 
+    public.provinces.province_name as province,
+    public.provinces.latitude as lat,
+    public.provinces.longitude as lng, 
+    public.epidemics.name
+    from public.epidemic_histories,
+         public.epidemics,
+         public.plants,
+         public.households,
+         public.provinces
+    where public.epidemic_histories.epidemic_id = public.epidemics.id
+    and public.epidemic_histories.plant_id = public.plants.id
+    and public.plants.household_id = public.households.id
+    and public.households.province_id = public.provinces.id
+    group by public.provinces.province_name,
+    public.epidemics.name,
+    public.provinces.latitude,
+    public.provinces.longitude
+  `
+  );
+  return results;
 };
 
 const getEpidemicHistory = async (input) => {

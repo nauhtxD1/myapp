@@ -1,0 +1,58 @@
+{
+    "name": "myapp",
+    "version": "1.0.0",
+    "description": "API-HQND",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/nauhtxD1/myapp.git"
+    },
+    "engines": {
+      "npm": ">=5",
+      "node": ">=8.15.1"
+    },
+    "author": "nauhtXD",
+    "license": "MIT",
+    "scripts": {
+      "dev": "NODE_ENV=dev nodemon app.js",
+      "test": "jest",
+      "start": "node app.js"
+    },
+    "_moduleAliases": {
+        "@libs": "libs",
+        "@models": "models",
+        "@modules": "modules",
+        "@constants": "constants",
+        "@workers": "workers",
+        "@routes": "routes",
+        "@crons": "crons",
+        "@common": "common",
+        "@credentials": "credentials",
+        "@middlewares": "middlewares",
+        "@services": "services"
+      },
+    "lint-staged": {
+      "*.js": [
+        "npm run lint:eslint:fix",
+        "git add --force"
+      ],
+      "*.json": [
+        "prettier --write",
+        "git add --force"
+      ]
+    },
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "chalk": "^3.0.0",
+        "cors": "2.8.5",
+        "express": "4.17.1",
+        "log4js": "6.3.0",
+        "moment": "2.29.1",
+        "sequelize": "5.21.5",
+        "sequelize-cli": "5.5.1"
+    },
+    "devDependencies": {
+        "module-alias": "^2.2.2",
+        "nodemon": "^2.0.7"
+    }
+  }
+  
