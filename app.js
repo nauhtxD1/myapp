@@ -4,6 +4,10 @@ const index = require("./routes/index");
 const bodyParser = require("body-parser");
 const port = 8080;
 
+const pg = require("pg");
+pg.defaults.ssl = true;
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(bodyParser.json({ limit: "50mb", extended: true }));
 app.use(function (req, res, next) {
