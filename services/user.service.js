@@ -7,7 +7,13 @@ const getAllUsers = async () => {
       model: models.userType,
       attributes: ["name"],
     },
-    where: { isActive: true },
+    where: { isActive: true, userTypeId: 2 },
+  });
+};
+
+const getLastestUser = async () => {
+  return await models.user.findOne({
+    order: [["id", "DESC"]],
   });
 };
 
@@ -51,7 +57,14 @@ const getLoginToken = async (input) => {
     where: { username: input.username, password: input.password },
   });
   if (!user) {
-    throw new CustomError({ message: "User not exists or wrong password" });
+    throw new CustomError({
+      message: "Tài khoản không tồn tại hoặc mật khẩu không chính xác",
+    });
+  }
+  if (!user.status) {
+    throw new CustomError({
+      message: "Tài khoản bị vô hiệu hóa",
+    });
   }
   return { uid: user.id, token: user.userType.dataValues.token };
 };
@@ -63,4 +76,5 @@ module.exports = {
   deleteUser,
   checkUserExists,
   getLoginToken,
+  getLastestUser,
 };

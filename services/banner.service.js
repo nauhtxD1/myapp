@@ -3,6 +3,7 @@ const models = require("../models/index");
 const getAllBanners = async () => {
   return await models.banner.scope("ms1").findAll({
     where: { isActive: true },
+    order: [["id", "ASC"]],
   });
 };
 
