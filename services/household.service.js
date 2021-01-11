@@ -1,5 +1,5 @@
 const models = require("../models/index");
-
+const userServices = require("../services/user.service");
 const getHouseholdByUID = async (userId) => {
   return await models.household.findOne({
     include: [
@@ -12,7 +12,7 @@ const getHouseholdByUID = async (userId) => {
         attributes: ["provinceName"],
       },
     ],
-    where: { userId },
+    where: { userId, isActive: true },
   });
 };
 
@@ -29,11 +29,13 @@ const getAllHouseholds = async () => {
       },
       {
         model: models.user,
-        attributes: ["username"],
+        attributes: ["username", "password", "email", "phone"],
       },
     ],
+    where: { isActive: true },
   });
 };
+
 const getHousehold = async (input) => {
   return await models.household.scope("ms1").findOne({
     where: { id: input },
@@ -48,13 +50,17 @@ const getLastestHouseholds = async (input) => {
 };
 
 const createHousehold = async (input) => {
-  await models.household.create({ ...input });
+  await models.user.create({ ...input.user });
+  const lastUser = await userServices.getLastestUser();
+  const data = { ...input.household, userId: lastUser.id };
+  await models.household.create({ ...data });
 };
 
 const deleteHousehold = async (id) => {
   try {
     const household = await checkHouseholdExists(id);
     await household.update({ isActive: false });
+    await userServices.deleteUser(household.userId);
   } catch (e) {
     throw e;
   }

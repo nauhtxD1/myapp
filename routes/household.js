@@ -24,7 +24,15 @@ router.get("/:id", async (req, res) => {
 });
 router.post("/", async (req, res) => {
   try {
-    const input = req.body;
+    const input = {
+      household: {
+        name: req.body.name,
+        landArea: req.body.landArea,
+        landId: req.body.landId,
+        provinceId: req.body.provinceId,
+      },
+      user: req.body.user,
+    };
     await householdServices.createHousehold(input);
     response.success(res);
   } catch (e) {
