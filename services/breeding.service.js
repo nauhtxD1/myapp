@@ -1,4 +1,5 @@
 const models = require("../models/index");
+const CustomError = require("../common/libs/custom-error");
 
 const getAllBreedings = async () => {
   return await models.breeding.scope("ms1").findAll({

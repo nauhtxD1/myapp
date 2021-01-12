@@ -1,4 +1,5 @@
 const models = require("../models/index");
+const CustomError = require("../common/libs/custom-error");
 
 const getAllHandleFlowers = async () => {
   return await models.handleFlower.scope("ms1").findAll({

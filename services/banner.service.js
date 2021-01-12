@@ -1,4 +1,5 @@
 const models = require("../models/index");
+const CustomError = require("../common/libs/custom-error");
 
 const getAllBanners = async () => {
   return await models.banner.scope("ms1").findAll({

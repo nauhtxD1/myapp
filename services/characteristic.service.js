@@ -1,4 +1,5 @@
 const models = require("../models/index");
+const CustomError = require("../common/libs/custom-error");
 
 const getAllCharacteristics = async () => {
   return await models.characteristic.scope("ms1").findAll({

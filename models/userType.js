@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
     },
+    token: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
   });
   return userType;
 };

@@ -1,4 +1,5 @@
 const models = require("../models/index");
+const CustomError = require("../common/libs/custom-error");
 
 const getAllContacts = async () => {
   return await models.contact.scope("ms1").findAll({

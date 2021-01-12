@@ -13,6 +13,16 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/token/:token", async (req, res) => {
+  try {
+    const input = req.params.token;
+    const output = await userTypesServices.checkTokenAdmin(input);
+    response.success(res, output);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
 router.post("/", async (req, res) => {
   try {
     const input = req.body;

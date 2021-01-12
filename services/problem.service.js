@@ -2,6 +2,7 @@ const models = require("../models/index");
 const { Sequelize, sequelize } = models;
 const { Op } = Sequelize;
 const moment = require("moment");
+const CustomError = require("../common/libs/custom-error");
 
 const getAllProblems = async () => {
   return await models.problem.findAll({

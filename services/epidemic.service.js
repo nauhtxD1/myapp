@@ -1,4 +1,5 @@
 const models = require("../models/index");
+const CustomError = require("../common/libs/custom-error");
 
 const getAllEpidemics = async () => {
   return await models.epidemic.findAll({

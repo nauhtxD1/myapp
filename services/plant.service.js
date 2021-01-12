@@ -1,5 +1,6 @@
 const { sequelize } = require("../models/index");
 const models = require("../models/index");
+const CustomError = require("../common/libs/custom-error");
 
 const getAllPlantsByHID = async (householdId) => {
   return await models.plant.findAll({

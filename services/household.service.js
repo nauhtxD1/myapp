@@ -3,6 +3,7 @@ const userServices = require("../services/user.service");
 const { Sequelize, sequelize } = models;
 const { Op } = Sequelize;
 const moment = require("moment");
+const CustomError = require("../common/libs/custom-error");
 
 const getHouseholdByUID = async (userId) => {
   return await models.household.findOne({

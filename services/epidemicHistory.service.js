@@ -1,5 +1,6 @@
 const models = require("../models/index");
 const { Sequelize, sequelize } = models;
+const CustomError = require("../common/libs/custom-error");
 
 const getAllEpidemicHistories = async () => {
   return await models.epidemicHistory.findAll({
@@ -12,7 +13,7 @@ const getAllCountEpidemics = async () => {
     `select count(*) as count, 
     public.provinces.province_name as province,
     public.provinces.latitude as lat,
-    public.provinces.longitude as lng, 
+    public.provinces.longitude as lon, 
     public.epidemics.name
     from public.epidemic_histories,
          public.epidemics,

@@ -1,4 +1,5 @@
 const models = require("../models/index");
+const CustomError = require("../common/libs/custom-error");
 
 const getAllDocumentTypes = async () => {
   return await models.documentType.findAll({
