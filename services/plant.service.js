@@ -18,9 +18,6 @@ const getAllPlantsByHID = async (householdId) => {
   });
 };
 
-const findAllPlant = async (id) => {
-  attributes: [[sequelize.fn("count", sequelize.col("id"))]];
-};
 const getAllPlants = async () => {
   return await models.plant.findAll({
     include: [
@@ -63,6 +60,21 @@ const deletePlant = async (id) => {
   }
 };
 
+const deletePlantsByHID = async (householdId) => {
+  try {
+    await models.plant.update(
+      { isActive: false },
+      {
+        where: {
+          householdId,
+        },
+      }
+    );
+  } catch (e) {
+    throw e;
+  }
+};
+
 const updatePlant = async (input) => {
   const { id } = input;
   try {
@@ -80,6 +92,7 @@ const checkPlantExists = async (id) => {
   }
   return plant;
 };
+
 module.exports = {
   getAllPlantsByHID,
   getAllPlants,
@@ -89,5 +102,5 @@ module.exports = {
   createPlant,
   getLastestPlants,
   getPlant,
-  findAllPlant,
+  deletePlantsByHID,
 };

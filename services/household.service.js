@@ -1,5 +1,6 @@
 const models = require("../models/index");
 const userServices = require("../services/user.service");
+const plantServices = require("../services/plant.service");
 const { Sequelize, sequelize } = models;
 const { Op } = Sequelize;
 const moment = require("moment");
@@ -77,6 +78,7 @@ const deleteHousehold = async (id) => {
     const household = await checkHouseholdExists(id);
     await household.update({ isActive: false });
     await userServices.deleteUser(household.userId);
+    await plantServices.deletePlantsByHID(id);
   } catch (e) {
     throw e;
   }
