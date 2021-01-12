@@ -15,10 +15,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const input = {
-      plantId: 3,
-      epidemicId: 1,
-    };
+    const input = req.body;
     await epidemicHistoryServices.createEpidemicHistory(input);
     response.success(res);
   } catch (e) {
