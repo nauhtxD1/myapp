@@ -1,4 +1,7 @@
 const models = require("../models/index");
+const { Sequelize, sequelize } = models;
+const { Op } = Sequelize;
+const moment = require("moment");
 
 const getAllProblems = async () => {
   return await models.problem.findAll({
@@ -14,6 +17,17 @@ const getAllProblems = async () => {
     ],
     where: { isActive: true },
   });
+};
+
+const getAllCountProblems = async () => {
+  const all = await models.problem.scope("ms1").findAll({
+    attributes: [[sequelize.fn("count", sequelize.col("id")), "count"]],
+  });
+  const lastWeek = await models.problem.scope("ms1").findAll({
+    attributes: [[sequelize.fn("count", sequelize.col("id")), "count"]],
+    where: { updatedAt: { [Op.gte]: moment().subtract(7, "days").toDate() } },
+  });
+  return { all, lastWeek };
 };
 
 const createProblem = async (input) => {
@@ -53,4 +67,5 @@ module.exports = {
   updateProblem,
   deleteProblem,
   checkProblemExists,
+  getAllCountProblems,
 };

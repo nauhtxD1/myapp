@@ -1,5 +1,9 @@
 const models = require("../models/index");
 const userServices = require("../services/user.service");
+const { Sequelize, sequelize } = models;
+const { Op } = Sequelize;
+const moment = require("moment");
+
 const getHouseholdByUID = async (userId) => {
   return await models.household.findOne({
     include: [
@@ -34,6 +38,17 @@ const getAllHouseholds = async () => {
     ],
     where: { isActive: true },
   });
+};
+
+const getAllCountHouseholds = async () => {
+  const all = await models.household.scope("ms1").findAll({
+    attributes: [[sequelize.fn("count", sequelize.col("id")), "count"]],
+  });
+  const lastWeek = await models.household.scope("ms1").findAll({
+    attributes: [[sequelize.fn("count", sequelize.col("id")), "count"]],
+    where: { updatedAt: { [Op.gte]: moment().subtract(7, "days").toDate() } },
+  });
+  return { all, lastWeek };
 };
 
 const getHousehold = async (input) => {
@@ -93,4 +108,5 @@ module.exports = {
   createHousehold,
   getLastestHouseholds,
   getHousehold,
+  getAllCountHouseholds,
 };

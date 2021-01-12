@@ -5,11 +5,13 @@ const getAllEpidemics = async () => {
     where: { isActive: true },
   });
 };
+
 const getEpidemic = async (input) => {
   return await models.epidemic.scope("ms1").findOne({
     where: { id: input },
   });
 };
+
 const createEpidemic = async (input) => {
   await models.epidemic.create({ ...input });
 };

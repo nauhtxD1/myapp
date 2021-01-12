@@ -23,6 +23,15 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.get("/count/all", async (req, res) => {
+  try {
+    const output = await postServices.getAllCountPosts();
+    response.success(res, output);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
 router.get("/list/:id", async (req, res) => {
   try {
     const input = req.params.id;

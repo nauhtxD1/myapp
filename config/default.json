@@ -1,10 +1,10 @@
 {
     "db": {
-        "host": "localhost",
+        "host": "ec2-52-205-145-201.compute-1.amazonaws.com",
         "port": 5432,
-        "username": "postgres",
-        "password": "120799",
-        "database": "hqnd",
+        "username": "ctynzvixavbros",
+        "password": "58283b45649515ada73c8ee23dc7036fea3f93d85a1741eac606e151fa1773b4",
+        "database": "dbhpg6ulp26mr0",
         "dialect": "postgres",
         "logging": true,
         "define": {

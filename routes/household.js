@@ -13,6 +13,15 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/count/all", async (req, res) => {
+  try {
+    const output = await householdServices.getAllCountHouseholds();
+    response.success(res, output);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
 router.get("/:id", async (req, res) => {
   try {
     const input = req.params.userId;
@@ -22,6 +31,7 @@ router.get("/:id", async (req, res) => {
     response.fail(res, e);
   }
 });
+
 router.post("/", async (req, res) => {
   try {
     const input = {
@@ -59,4 +69,5 @@ router.put("/delete/:id", async (req, res) => {
     response.fail(res, e);
   }
 });
+
 module.exports = router;
