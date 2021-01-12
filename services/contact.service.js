@@ -60,7 +60,8 @@ const deleteContact = async (id) => {
     throw e;
   }
 };
-const updateContact = async (id) => {
+const updateContact = async (input) => {
+  const { id } = input;
   try {
     const contact = await checkContactExists(id);
     await contact.update({ ...input });
@@ -76,6 +77,7 @@ const checkContactExists = async (id) => {
   }
   return contact;
 };
+
 module.exports = {
   getAllContacts,
   getHeadquatersContact,
