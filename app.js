@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const index = require("./routes/index");
 const bodyParser = require("body-parser");
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 const pg = require("pg");
 pg.defaults.ssl = true;
