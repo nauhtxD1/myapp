@@ -60,7 +60,7 @@ const deleteContact = async (id) => {
     throw e;
   }
 };
-const updateContact = async (input) => {
+const updateContact = async (id) => {
   try {
     const contact = await checkContactExists(id);
     await contact.update({ ...input });
