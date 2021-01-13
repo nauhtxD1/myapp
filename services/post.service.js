@@ -35,12 +35,16 @@ const getLastestPosts = async () => {
       attributes: ["name"],
     },
     order: [["publishAt", "DESC"]],
+    where: { publishAt: { [Op.lte]: moment().toDate() } },
   });
 };
 
 const getLastestPostsBySCID = async (input) => {
   return await models.post.findAll({
-    where: { subcategoryId: input.subId },
+    where: {
+      subcategoryId: input.subId,
+      publishAt: { [Op.lte]: moment().toDate() },
+    },
     order: [["publishAt", "DESC"]],
     limit: input.limit,
   });
