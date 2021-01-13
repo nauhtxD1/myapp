@@ -13,7 +13,7 @@
   "author": "nauhtXD",
   "license": "MIT",
   "scripts": {
-    "dev": "NODE_ENV=dev nodemon app.js",
+    "dev": "nodemon app.js",
     "test": "jest",
     "start": "node app.js"
   },
@@ -22,12 +22,8 @@
     "@models": "models",
     "@modules": "modules",
     "@constants": "constants",
-    "@workers": "workers",
     "@routes": "routes",
-    "@crons": "crons",
     "@common": "common",
-    "@credentials": "credentials",
-    "@middlewares": "middlewares",
     "@services": "services"
   },
   "lint-staged": {
