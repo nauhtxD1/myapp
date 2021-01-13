@@ -5,7 +5,9 @@ const moment = require("moment");
 const CustomError = require("../common/libs/custom-error");
 
 const getAllPosts = async () => {
-  return await models.post.scope("ms1").findAll();
+  return await models.post.scope("ms1").findAll({
+    order: [["updatedAt", "DESC"]],
+  });
 };
 
 const getPost = async (id) => {
