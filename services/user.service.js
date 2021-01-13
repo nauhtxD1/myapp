@@ -60,7 +60,8 @@ const getLoginToken = async (input) => {
     throw new CustomError({
       message: "Tài khoản không tồn tại hoặc mật khẩu không chính xác",
     });
-  } else if (!user.status) {
+  }
+  if (!user.status) {
     throw new CustomError({
       message: "Tài khoản bị vô hiệu hóa",
     });
