@@ -56,16 +56,17 @@ const getLoginToken = async (input) => {
     },
     where: { username: input.username, password: input.password },
   });
+
   if (!user) {
     throw new CustomError({
       message: "Tài khoản không tồn tại hoặc mật khẩu không chính xác",
     });
-  }
-  if (!user.status) {
+  } else if (!user.status) {
     throw new CustomError({
       message: "Tài khoản bị vô hiệu hóa",
     });
   }
+
   return { uid: user.id, token: user.userType.dataValues.token };
 };
 
