@@ -27,6 +27,8 @@ const documentType = require("./documentType");
 const field = require("./field");
 const breeding = require("./breeding");
 const banner = require("./banner");
+const forumPost = require("./forumPost");
+const forumComment = require("./forumComment");
 
 router.use("/users", user);
 router.use("/userTypes", userType);
@@ -55,5 +57,7 @@ router.use("/documentTypes", documentType);
 router.use("/fields", field);
 router.use("/breedings", breeding);
 router.use("/banners", banner);
+router.use("/forumPosts", forumPost);
+router.use("/forumComments", forumComment);
 
 module.exports = router;

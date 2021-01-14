@@ -1,4 +1,5 @@
 const models = require("../models/index");
+const forumPostServices = require("../services/forumPost.service");
 const CustomError = require("../common/libs/custom-error");
 
 const getAllUsers = async () => {
@@ -35,6 +36,7 @@ const deleteUser = async (id) => {
   try {
     const user = await checkUserExists(id);
     await user.update({ isActive: false });
+    await forumPostServices.deleteForumPostsByUID(id);
   } catch (e) {
     throw e;
   }
