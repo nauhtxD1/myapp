@@ -71,7 +71,7 @@ const getLoginToken = async (input) => {
     });
   }
 
-  return { uid: user.id, token: user.userType.dataValues.token };
+  return { user, token: user.userType.dataValues.token };
 };
 
 module.exports = {
