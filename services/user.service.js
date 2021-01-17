@@ -56,7 +56,7 @@ const getLoginToken = async (input) => {
   const user = await models.user.findOne({
     include: {
       model: models.userType,
-      attributes: ["token"],
+      attributes: ["name", "token"],
     },
     where: { username, password },
   });
