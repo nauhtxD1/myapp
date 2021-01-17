@@ -12,6 +12,17 @@ const getAllForumPosts = async () => {
   });
 };
 
+const getAllForumPostsByUID = async (userId) => {
+  return await models.forumPost.findAll({
+    include: {
+      model: models.user,
+      attributes: ["username"],
+    },
+    order: [["createdAt", "DESC"]],
+    where: { isActive: true, userId },
+  });
+};
+
 const getForumPost = async (id) => {
   increaseView(id);
   return await models.forumPost.findOne({
@@ -87,4 +98,5 @@ module.exports = {
   checkForumPostExists,
   increaseView,
   increaseReply,
+  getAllForumPostsByUID,
 };

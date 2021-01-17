@@ -23,6 +23,16 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.get("/user/:id", async (req, res) => {
+  try {
+    const input = req.params.id;
+    const output = await forumPostServices.getAllForumPostsByUID(input);
+    response.success(res, output);
+  } catch (e) {
+    response.fail(res, e);
+  }
+});
+
 router.post("/", async (req, res) => {
   try {
     const input = req.body;
