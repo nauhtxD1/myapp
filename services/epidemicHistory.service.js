@@ -8,6 +8,36 @@ const getAllEpidemicHistories = async () => {
   });
 };
 
+const getAllEpidemicHistoriesByUID = async (userId) => {
+  return await models.epidemicHistory.findAll({
+    include: [
+      {
+        model: models.plant,
+        attributes: ["genusFeatureId", "householdId"],
+        include: [
+          {
+            model: models.genusFeature,
+            attributes: ["name"],
+          },
+          {
+            model: models.household,
+            attributes: ["name"],
+          },
+        ],
+      },
+      {
+        model: models.epidemic,
+        attributes: ["name"],
+      },
+    ],
+    where: {
+      isActive: true,
+      status: true,
+      "$plant.household.user_id$": userId,
+    },
+  });
+};
+
 const getAllCountEpidemics = async () => {
   const [results] = await sequelize.query(
     `select count(*) as count, 
@@ -80,4 +110,5 @@ module.exports = {
   deleteEpidemicHistory,
   createEpidemicHistory,
   getAllCountEpidemics,
+  getAllEpidemicHistoriesByUID,
 };
