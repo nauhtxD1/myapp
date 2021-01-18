@@ -1,4 +1,3 @@
-const { sequelize } = require("../models/index");
 const models = require("../models/index");
 const CustomError = require("../common/libs/custom-error");
 
@@ -15,6 +14,22 @@ const getAllPlantsByHID = async (householdId) => {
       },
     ],
     where: { householdId },
+  });
+};
+
+const getAllPlantsByUID = async (userId) => {
+  return await models.plant.findAll({
+    include: [
+      {
+        model: models.household,
+        attributes: ["name"],
+      },
+      {
+        model: models.genusFeature,
+        attributes: ["name"],
+      },
+    ],
+    where: { isActive: true, "$household.user_id$": userId },
   });
 };
 
@@ -103,4 +118,5 @@ module.exports = {
   getLastestPlants,
   getPlant,
   deletePlantsByHID,
+  getAllPlantsByUID,
 };

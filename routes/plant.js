@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:householdId", async (req, res) => {
   try {
     const input = req.params.householdId;
     const output = await plantServices.getAllPlantsByHID(input);
@@ -22,15 +22,17 @@ router.get("/:id", async (req, res) => {
     response.fail(res, e);
   }
 });
-router.get("/:id", async (req, res) => {
+
+router.get("/user/:id", async (req, res) => {
   try {
-    const input = req.params.householdId;
-    const output = await plantServices.findAllPlant(input);
+    const input = req.params.id;
+    const output = await plantServices.getAllPlantsByUID(input);
     response.success(res, output);
   } catch (e) {
-    response.fail(res.e);
+    response.fail(res, e);
   }
 });
+
 router.post("/", async (req, res) => {
   try {
     const input = req.body;
