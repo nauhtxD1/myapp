@@ -44,9 +44,13 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/update/:id", async (req, res) => {
+router.put("/update/:plantId/:epidemicId", async (req, res) => {
   try {
-    const input = { ...req.body, id: req.params.id };
+    const input = {
+      ...req.body,
+      plantId: req.params.plantId,
+      epidemicId: req.params.epidemicId,
+    };
     await epidemicHistoryServices.updateEpidemicHistory(input);
     response.success(res);
   } catch (e) {
@@ -54,9 +58,12 @@ router.put("/update/:id", async (req, res) => {
   }
 });
 
-router.put("/delete/:id", async (req, res) => {
+router.put("/delete/:plantId/:epidemicId", async (req, res) => {
   try {
-    const input = req.params.id;
+    const input = {
+      plantId: req.params.plantId,
+      epidemicId: req.params.epidemicId,
+    };
     await epidemicHistoryServices.deleteEpidemicHistory(input);
     response.success(res);
   } catch (e) {

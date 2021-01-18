@@ -72,9 +72,13 @@ const createEpidemicHistory = async (input) => {
   await models.epidemicHistory.create({ ...input });
 };
 
-const deleteEpidemicHistory = async (id) => {
+const deleteEpidemicHistory = async (input) => {
+  const { plantId, epidemicId } = input;
   try {
-    const epidemicHistory = await checkEpidemicHistoryExists(id);
+    const epidemicHistory = await checkEpidemicHistoryExists(
+      plantId,
+      epidemicId
+    );
     await epidemicHistory.update({ isActive: false });
   } catch (e) {
     throw e;
@@ -82,18 +86,21 @@ const deleteEpidemicHistory = async (id) => {
 };
 
 const updateEpidemicHistory = async (input) => {
-  const { id } = input;
+  const { plantId, epidemicId } = input;
   try {
-    const epidemicHistory = await checkEpidemicHistoryExists(id);
+    const epidemicHistory = await checkEpidemicHistoryExists(
+      plantId,
+      epidemicId
+    );
     await epidemicHistory.update({ ...input });
   } catch (e) {
     throw e;
   }
 };
 
-const checkEpidemicHistoryExists = async (id) => {
+const checkEpidemicHistoryExists = async (plantId, epidemicId) => {
   const epidemicHistory = await models.epidemicHistory.findOne({
-    where: { id },
+    where: { plantId, epidemicId },
   });
   if (!epidemicHistory) {
     throw new CustomError({ message: "EpidemicHistory not exists" });
