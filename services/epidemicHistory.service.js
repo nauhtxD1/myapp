@@ -32,7 +32,6 @@ const getAllEpidemicHistoriesByUID = async (userId) => {
     ],
     where: {
       isActive: true,
-      status: true,
       "$plant.household.user_id$": userId,
     },
   });
