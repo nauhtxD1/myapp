@@ -17,6 +17,7 @@ const getAllDocuments = async () => {
         attributes: ["name"],
       },
     ],
+    order: [["updatedAt", "DESC"]],
   });
 };
 

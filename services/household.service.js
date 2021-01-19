@@ -38,6 +38,7 @@ const getAllHouseholds = async () => {
         attributes: ["username", "password", "email", "phone"],
       },
     ],
+    order: [["updatedAt", "DESC"]],
     where: { isActive: true },
   });
 };

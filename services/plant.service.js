@@ -45,6 +45,7 @@ const getAllPlants = async () => {
         attributes: ["name"],
       },
     ],
+    order: [["updatedAt", "DESC"]],
     where: { isActive: true },
   });
 };

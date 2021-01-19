@@ -8,6 +8,7 @@ const getAllUsers = async () => {
       model: models.userType,
       attributes: ["name"],
     },
+    order: [["updatedAt", "DESC"]],
     where: { isActive: true, userTypeId: 2 },
   });
 };

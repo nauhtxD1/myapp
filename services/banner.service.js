@@ -4,7 +4,7 @@ const CustomError = require("../common/libs/custom-error");
 const getAllBanners = async () => {
   return await models.banner.scope("ms1").findAll({
     where: { isActive: true },
-    order: [["id", "ASC"]],
+    order: [["updatedAt", "DESC"]],
   });
 };
 

@@ -9,6 +9,7 @@ const getAllContacts = async () => {
         attributes: ["provinceName", "weatherId", "latitude", "longitude"],
       },
     ],
+    order: [["updatedAt", "DESC"]],
   });
 };
 
@@ -60,6 +61,7 @@ const deleteContact = async (id) => {
     throw e;
   }
 };
+
 const updateContact = async (input) => {
   const { id } = input;
   try {

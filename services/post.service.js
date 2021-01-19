@@ -6,7 +6,7 @@ const CustomError = require("../common/libs/custom-error");
 
 const getAllPosts = async () => {
   return await models.post.scope("ms1").findAll({
-    order: [["updatedAt", "DESC"]],
+    order: [["createdAt", "DESC"]],
   });
 };
 
