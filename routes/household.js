@@ -38,6 +38,7 @@ router.post("/", async (req, res) => {
       household: {
         name: req.body.name,
         landArea: req.body.landArea,
+        address: req.body.address,
         landId: req.body.landId,
         provinceId: req.body.provinceId,
       },
