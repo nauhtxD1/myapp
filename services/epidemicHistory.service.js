@@ -52,7 +52,8 @@ const getAllCountEpidemics = async () => {
     where public.epidemic_histories.epidemic_id = public.epidemics.id
     and public.epidemic_histories.plant_id = public.plants.id
     and public.plants.household_id = public.households.id
-    and public.households.province_id = public.provinces.id
+    and public.households.province_id = public.provinces.id 
+    and public.epidemic_histories.status = true
     group by public.provinces.province_name,
     public.epidemics.name,
     public.provinces.latitude,
