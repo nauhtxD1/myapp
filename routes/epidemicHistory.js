@@ -5,7 +5,7 @@ const response = require("../common/libs/response");
 const epidemicHistoryServices = require("../services//epidemicHistory.service");
 const router = express.Router();
 
-const fcmNoti = async (body, title) => {
+const fcmNoti = (body, title) => {
   const headers = {
     "Content-Type": "application/json",
     Authorization:
@@ -23,7 +23,7 @@ const fcmNoti = async (body, title) => {
     },
     priority: "high",
   };
-  await axios.post("https://fcm.googleapis.com/fcm/send", fcmData, {
+  axios.post("https://fcm.googleapis.com/fcm/send", fcmData, {
     headers: headers,
   });
 };
@@ -63,7 +63,7 @@ router.post("/", async (req, res) => {
     const input = req.body;
     await epidemicHistoryServices.createEpidemicHistory(input);
     const output = await epidemicHistoryServices.getLastestEpidemicHistory();
-    await fcmNoti(
+    fcmNoti(
       `Vừa phát hiện ${output.epidemic.name} trên giống ${output.plant.genusFeature.name}`,
       output.plant.household.province.provinceName
     );
