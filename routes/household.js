@@ -24,7 +24,7 @@ router.get("/count/all", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const input = req.params.userId;
+    const input = req.params.id;
     const output = await householdServices.getHouseholdByUID(input);
     response.success(res, output);
   } catch (e) {

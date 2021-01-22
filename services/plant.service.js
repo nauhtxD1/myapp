@@ -30,6 +30,7 @@ const getAllPlantsByUID = async (userId) => {
       },
     ],
     where: { isActive: true, "$household.user_id$": userId },
+    order: [["updatedAt", "DESC"]],
   });
 };
 

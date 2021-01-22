@@ -34,6 +34,38 @@ const getAllEpidemicHistoriesByUID = async (userId) => {
       isActive: true,
       "$plant.household.user_id$": userId,
     },
+    order: [["updatedAt", "DESC"]],
+  });
+};
+
+const getLastestEpidemicHistory = async () => {
+  return await models.epidemicHistory.findOne({
+    include: [
+      {
+        model: models.plant,
+        attributes: ["genusFeatureId", "householdId"],
+        include: [
+          {
+            model: models.household,
+            attributes: ["provinceId", "name"],
+            include: {
+              model: models.province,
+              attributes: ["provinceName"],
+            },
+          },
+          {
+            model: models.genusFeature,
+            attributes: ["name"],
+          },
+        ],
+      },
+      {
+        model: models.epidemic,
+        attributes: ["name"],
+      },
+    ],
+    where: { isActive: true, status: true },
+    order: [["createdAt", "DESC"]],
   });
 };
 
@@ -112,6 +144,7 @@ const checkEpidemicHistoryExists = async (plantId, epidemicId) => {
 module.exports = {
   getAllEpidemicHistories,
   getEpidemicHistory,
+  getLastestEpidemicHistory,
   checkEpidemicHistoryExists,
   updateEpidemicHistory,
   deleteEpidemicHistory,
