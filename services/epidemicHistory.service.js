@@ -120,7 +120,7 @@ const deleteEpidemicHistory = async (input) => {
 
 const deleteEpidemicHistoryByPID = async (plantId) => {
   try {
-    await epidemicHistory.update(
+    await models.epidemicHistory.update(
       { isActive: false },
       {
         where: {
