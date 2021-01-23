@@ -118,6 +118,21 @@ const deleteEpidemicHistory = async (input) => {
   }
 };
 
+const deleteEpidemicHistoryByPID = async (plantId) => {
+  try {
+    await epidemicHistory.update(
+      { isActive: false },
+      {
+        where: {
+          plantId,
+        },
+      }
+    );
+  } catch (e) {
+    throw e;
+  }
+};
+
 const updateEpidemicHistory = async (input) => {
   const { plantId, epidemicId } = input;
   try {
@@ -151,4 +166,5 @@ module.exports = {
   createEpidemicHistory,
   getAllCountEpidemics,
   getAllEpidemicHistoriesByUID,
+  deleteEpidemicHistoryByPID,
 };

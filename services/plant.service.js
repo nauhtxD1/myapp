@@ -1,5 +1,6 @@
 const models = require("../models/index");
 const CustomError = require("../common/libs/custom-error");
+const epidemicHistoryServices = require("../services/epidemicHistory.service");
 
 const getAllPlantsByHID = async (householdId) => {
   return await models.plant.findAll({
@@ -72,6 +73,7 @@ const deletePlant = async (id) => {
   try {
     const plant = await checkPlantExists(id);
     await plant.update({ isActive: false });
+    await epidemicHistoryServices.deleteEpidemicHistoryByPID(id);
   } catch (e) {
     throw e;
   }
